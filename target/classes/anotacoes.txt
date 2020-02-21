@@ -1,0 +1,177 @@
+VANTAGENS E DESVANTAGENS:
+==================================================================================================
+Uma situação onde o MongoDB é bastante usado é quando precisamos realizar buscas por proximidade,
+como, por exemplo, localizar a pizzaria mais próxima de você.
+
+Situações onde o uso do MongoDB não é indicado são cenários onde precisamos fazer muitas
+operações de agregação em uma única query, isso tem muito custo para o MongoDB.
+
+--------------------------------------------------------------------------------------------------
+
+
+db.alunos.insert(
+{
+	"nome" : "Daniela",
+	"data_nascimento" : new Date(1995, 07, 17),
+	"notas": [10, 9, 7],
+	"curso" : {
+	    "nome" : "Moda"
+	},
+	"habilidades" : [
+        {
+	        "nome" : "Alemão",
+	        "nível" : "Básico"
+        }
+    ]
+}
+)
+
+db.alunos.save(
+{
+	"nome" : "Daniela",
+	"data_nascimento" : new Date(1995, 07, 17),
+	"notas": [10, 9, 7],
+	"curso" : {
+	    "nome" : "Moda"
+	},
+	"habilidades" : [
+        {
+	        "nome" : "Alemão",
+	        "nível" : "Básico"
+        }
+    ]
+}
+)
+
+db.alunos.save(
+{
+	"nome" : "Jose",
+	"data_nascimento" : new Date(1917, 12, 17),
+	"notas": [10, 9, 7],
+	"curso" : {
+	    "nome" : "Moda"
+	},
+	"habilidades" : [
+        {
+	        "nome" : "Alemão",
+	        "nível" : "Básico"
+        }
+    ]
+}
+)
+
+db.alunos.insert(
+{
+    "_id": ObjectId("5e4fce20ba9cff7a967e2a60"),
+	"nome" : "asdasdasd",
+	"data_nascimento" : new Date(1946, 07, 17),
+	"notas": [10, 9, 7],
+	"curso" : {
+	    "nome" : "Moda"
+	},
+	"habilidades" : [
+        {
+	        "nome" : "Russo",
+	        "nível" : "Básico"
+        }
+    ]
+}
+)
+
+db.alunos.save(
+{
+    "_id": ObjectId("5e4fce20ba9cff7a967e2a61"),
+	"nome" : "asdasdasd",
+	"data_nascimento" : new Date(1946, 07, 17),
+	"notas": [10, 9, 7],
+	"curso" : {
+	    "nome" : "Moda"
+	},
+	"habilidades" : [
+        {
+	        "nome" : "Russo",
+	        "nível" : "Básico"
+        }
+    ]
+}
+)
+
+db.alunos.save(
+{
+    "_id": ObjectId("5e4fce20ba9cff7a967e2a59"),
+	"nome" : "asdasdasd",
+	"data_nascimento" : new Date(1946, 07, 17),
+	"notas": [10, 9, 7],
+	"curso" : {
+	    "nome" : "Moda"
+	},
+	"habilidades" : [
+        {
+	        "nome" : "Russo",
+	        "nível" : "Básico"
+        }
+    ]
+}
+)
+
+{"_id":{"$oid":"5e4fce20ba9cff7a967e2a61"},"nome":"Jose","data_nascimento":{"$date":{"$numberLong":"-1639602000000"}},"notas":[{"$numberDouble":"10"},{"$numberDouble":"9"},{"$numberDouble":"7"}],"curso":{"nome":"Moda"},"habilidades":[{"nome":"Alemão","nível":"Básico"}]}
+
+db.alunos.remove( {"_id": ObjectId("5e4a90d6eda41a47e9a79c8e")});
+
+db.alunos.find().pretty()
+--------------------------------------------------------------------------------------------------
+[
+	{
+		"firstName": "José",
+		"lastName": "da Silva",
+		"age": 18,
+		"address": {
+			"street": "Rua Sem Saída",
+			"number": 1234,
+			"postcode": "12389-666",
+			"city": "São Paulo",
+			"country": "Brasil"
+		},
+		"insurance": true,
+		"cars": [
+			{
+				"brand": "Hyundai",
+				"model": "HB20",
+				"maxSpeedKmH": 299.5
+			},
+			{
+				"brand": "Kia",
+				"model": "Sportage",
+				"maxSpeedKmH": 122.99
+			}
+		]
+	},
+	{
+		"firstName": "João",
+		"lastName": "Pereira",
+		"age": 28,
+		"address": {
+			"street": "Rua Pedro Alvares Cabral",
+			"number": 24,
+			"postcode": "01234-125",
+			"city": "São Paulo",
+			"country": "Brasil"
+		},
+		"insurance": false,
+		"cars": [
+			{
+				"brand": "Fiat",
+				"model": "Uno",
+				"maxSpeedKmH": 99.5
+			},
+			{
+				"brand": "Honda",
+				"model": "Fit",
+				"maxSpeedKmH": 222.99
+			}
+		]
+	}
+]
+
+
+mongod --port 27017 --dbpath /Progra~1/MongoDB/Server/4.2/data --replSet rs0 --bind_ip localhost,<127.0.0.1>
